@@ -1,0 +1,9 @@
+C:\Users\Matias\Desktop\WinForm-equipo-27-main\Negocio\bin\Debug\Negocio.dll
+C:\Users\Matias\Desktop\WinForm-equipo-27-main\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Matias\Desktop\WinForm-equipo-27-main\Negocio\bin\Debug\Dominio.dll
+C:\Users\Matias\Desktop\WinForm-equipo-27-main\Negocio\bin\Debug\Dominio.pdb
+C:\Users\Matias\Desktop\WinForm-equipo-27-main\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\Matias\Desktop\WinForm-equipo-27-main\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Matias\Desktop\WinForm-equipo-27-main\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\Matias\Desktop\WinForm-equipo-27-main\Negocio\obj\Debug\Negocio.dll
+C:\Users\Matias\Desktop\WinForm-equipo-27-main\Negocio\obj\Debug\Negocio.pdb
