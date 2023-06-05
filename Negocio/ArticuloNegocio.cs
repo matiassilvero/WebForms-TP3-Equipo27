@@ -6,6 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+<<<<<<< HEAD
+=======
+using System.Xml.Linq;
+>>>>>>> 6a26bd3 (Modificando)
 using Dominio;
 
 namespace Negocio
@@ -18,6 +22,7 @@ namespace Negocio
             AccesoDatos acceso = new AccesoDatos();
             try
             {
+<<<<<<< HEAD
                 //acceso.setearConsulta("Select A.ID, A.Codigo Codigo, A.Nombre, A.Descripcion, A.Precio, C.Descripcion Categoria, C.Id IdCategoria, M.Id IdMarca, M.Descripcion Marca, I.Id IdImagen, I.ImagenUrl ImagenUrl From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id join IMAGENES I on A.Id = I.IdArticulo");
                 //acceso.setearConsulta("Select A.ID, A.Codigo Codigo, A.Nombre, A.Descripcion, A.Precio, C.Descripcion Categoria, C.Id IdCategoria, M.Id IdMarca, M.Descripcion Marca From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id");
                 acceso.setearConsulta("Select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.IdMarca, A.IdCategoria, " +
@@ -27,6 +32,19 @@ namespace Negocio
                     "left join CATEGORIAS C on A.IdCategoria = C.Id");//puse esta consulta para q muestre TODOS los articulos, probar
                 acceso.ejecutarLectura();
                 List<Articulo> lista = new List<Articulo>();
+=======
+                acceso.setearConsulta("Select A.ID, A.Codigo Codigo, A.Nombre, A.Descripcion, A.Precio, C.Descripcion Categoria, C.Id IdCategoria, M.Id IdMarca, M.Descripcion Marca, I.Id IdImagen, I.ImagenUrl ImagenUrl From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id join IMAGENES I on A.Id = I.IdArticulo");//esta no muestra el articulo 2
+                //acceso.setearConsulta("Select A.ID, A.Codigo Codigo, A.Nombre, A.Descripcion, A.Precio, C.Descripcion Categoria, C.Id IdCategoria, M.Id IdMarca, M.Descripcion Marca From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id");//esta tira excepcion al mostrar la imagen
+                //acceso.setearConsulta("Select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.IdMarca, A.IdCategoria, " +
+                //    "I.Id, I.IdArticulo, I.ImagenUrl, M.Id, M.Descripcion, C.Id, C.Descripcion " +
+                //    "From ARTICULOS A inner join IMAGENES I on A.Id = I.IdArticulo " +
+                //    "inner join MARCAS M on A.IdMarca = M.Id " +
+                //    "left join CATEGORIAS C on A.IdCategoria = C.Id");//puse esta consulta para q muestre TODOS los articulos, probar. Con esta hay conflicto, cuando muestro la marca y categoria dicen lo mismo que en descripcion
+                acceso.ejecutarLectura();
+                List<Articulo> lista = new List<Articulo>();
+
+
+>>>>>>> 6a26bd3 (Modificando)
                 while (acceso.Lector.Read())
                 {
                     Articulo aux = new Articulo();
@@ -36,6 +54,7 @@ namespace Negocio
                     aux.Nombre = (string)acceso.Lector["Nombre"];
                     aux.Descripcion = (string)acceso.Lector["Descripcion"];
                     aux.Precio = (decimal)acceso.Lector["Precio"];
+<<<<<<< HEAD
                     //aux.Precio = acceso.Lector.GetSqlMoney(5);
 
                     aux.Categoria = new Categoria();
@@ -48,6 +67,19 @@ namespace Negocio
 
                     //aux.ImagenUrl = new Imagen();
                     //aux.ImagenUrl.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
+=======
+
+                    aux.Marca = new Marca();
+                    aux.Marca.ID = (int)acceso.Lector["IdMarca"];
+                    aux.Marca.Descripcion = (string)acceso.Lector["Marca"];
+
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.ID = (int)acceso.Lector["IdCategoria"];
+                    aux.Categoria.Descripcion = (string)acceso.Lector["Categoria"];
+
+                    //cambié a string en la clase Articulo la parte de la Imagen
+                    aux.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
+>>>>>>> 6a26bd3 (Modificando)
 
                     lista.Add(aux);
                 }
@@ -212,5 +244,108 @@ namespace Negocio
         }
 
 
+<<<<<<< HEAD
+=======
+
+        public List<Articulo> filtrar(string campo, string criterio, string filtro)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                //a esta consulta(q usamos mas arriba tmb) la usamos como base, le vamos a agregar posibles filtros al final
+                string consulta = "Select A.ID, A.Codigo Codigo, A.Nombre, A.Descripcion, A.Precio, " +
+                    "C.Descripcion Categoria, C.Id IdCategoria, M.Id IdMarca, M.Descripcion Marca, " +
+                    "I.Id IdImagen, I.ImagenUrl ImagenUrl From ARTICULOS A join CATEGORIAS C " +
+                    "on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id join IMAGENES I on A.Id = I.IdArticulo ";
+                //ahora a nuestra consulta le agregamos algo al final
+
+                if (campo == "Nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Where Nombre like '" + filtro + "%'";//FIJARSE BIEN, xq en SQL lee lo q va entre las comillas simples ''
+                            break;
+                        case "Termina con":
+                            consulta += "Where Nombre like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "Where Nombre like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+
+                if (campo == "Marca")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Where Marca like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "Where Marca like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "Where Marca like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+
+                if (campo == "Categoria")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Where Categoria like '" + filtro + "%'";//FIJARSE BIEN, xq en SQL lee lo q va entre las comillas simples ''
+                            break;
+                        case "Termina con":
+                            consulta += "Where Categoria like '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "Where Categoria like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.ID= (int)datos.Lector["id"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    aux.Marca = new Marca();
+                    aux.Marca.ID = (int)datos.Lector["idMarca"];
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.ID = (int)datos.Lector["idCategoria"];
+                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+
+                    lista.Add(aux);
+
+                }
+
+                return lista;
+            }
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+
+>>>>>>> 6a26bd3 (Modificando)
     }
 }
