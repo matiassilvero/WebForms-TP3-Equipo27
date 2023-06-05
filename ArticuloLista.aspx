@@ -3,12 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <style>
-        h1, .Busqueda{
-            color:yellow;
+        h1, .Busqueda {
+            color: yellow;
         }
     </style>
+
 
     <h1>Lista de Articulos</h1>
 
@@ -42,7 +42,7 @@
                     <asp:Label Text="Campo" ID="lblCampo" runat="server" />
                     <asp:DropDownList runat="server" AutoPostBack="true" CssClass="form-control"
                         ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
-                        <asp:ListItem Text="Nombre" />
+                        <asp:ListItem Text="Nombre" color="yellow"/>
                         <asp:ListItem Text="Categoria" />
                         <asp:ListItem Text="Marca" />
                     </asp:DropDownList>
