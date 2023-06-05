@@ -11,6 +11,7 @@
 
             <div class="text-light p-3 text-center" style="margin-top: 3rem;">
                 <h4><strong>Catálogo</strong></h4>
+<<<<<<< HEAD
                 <p>¡Te invitamos a explorar nuestro catálogo de productos!</p>
             </div>
 
@@ -19,6 +20,64 @@
     </div>
 
     <!-- Cards de muestra -->
+=======
+                <p>¡Te invitamos a explorar nuestro catálogo completo de productos!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+                <asp:Repeater runat="server" ID="repRepetidor">
+            <ItemTemplate>
+
+                <div class="col">
+                    <div class="card" >
+                        <img src=" <%#Eval("ImagenUrl")%>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><%#Eval("Nombre") %> </h5>
+                            <p class="card-text"><%#Eval("Descripcion") %> </p>
+                          <p class="card-text">Codigo: <%#Eval("Codigo") %> ----- Precio: $<%#Eval("Precio") %> </p
+                          <p class="card-text">Marca: <%#Eval("Marca") %> ----- Categoria: <%#Eval("Categoria") %> </p>
+                           
+                            <a href="DetalleArticulo.aspx?id=<%#Eval("ID") %>">Ver detalle</a>
+
+                            <asp:button Text="Agregar a carrito" CssClass="btn btn-primary" ID="btnAgregar" 
+                                runat="server" CommandArgument='<%#Eval("ID")%>' 
+                                CommandName="ArticuloId" OnClick="btnAgregar_Click"/>
+                        </div>
+                    </div>
+                </div>
+
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
+
+    <!-- muestra de articulos con foreach-->
+<%--    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% foreach (var articulo in ListaArticulo) { %>
+        <div class="col">
+            <div class="card">
+                <img src="<%= articulo.ImagenUrl %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><%= articulo.Nombre %></h5>
+                    <p class="card-text"><%= articulo.Descripcion %></p>
+                    <p class="card-text">Codigo: <%= articulo.Codigo %></p>
+                    <p class="card-text">Precio: $<%= articulo.Precio %></p>
+                    <p class="card-text">Marca: <%= articulo.Marca.Descripcion %></p>
+                    <p class="card-text">Categoría: <%= articulo.Categoria.Descripcion %></p>
+                    <a href="DetalleArticulo.aspx?id=<%= articulo.ID %>">Ver detalle</a>
+                    <asp:Button Text="Articulo" CssClass="btn btn-primary" ID="Button1" 
+                        runat="server" CommandArgument='<%= articulo.ID %>' 
+                        CommandName="ArticuloId" OnClick="btnArticulo_Click" />
+                </div>
+            </div>
+        </div>
+    <% } %>
+</div>--%>
+
+    <!-- muestra con Cards articulos de la web-->
+  <!--   Cards de muestra  
+>>>>>>> 6a26bd3 (Modificando)
     <div id="Catálogo">
         <div class="container" id="container-Lenguajes" style="background-color: black;">
             <br>
@@ -64,7 +123,11 @@
             </div>
         </div>
         <br>
+<<<<<<< HEAD
     </div>
 
+=======
+    </div>-->
+>>>>>>> 6a26bd3 (Modificando)
 
 </asp:Content>
