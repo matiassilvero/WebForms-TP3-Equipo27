@@ -6,10 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-<<<<<<< HEAD
-=======
+
 using System.Xml.Linq;
->>>>>>> 6a26bd3 (Modificando)
+
 using Dominio;
 
 namespace Negocio
@@ -22,7 +21,7 @@ namespace Negocio
             AccesoDatos acceso = new AccesoDatos();
             try
             {
-<<<<<<< HEAD
+                List<Articulo> lista = new List<Articulo>();
                 //acceso.setearConsulta("Select A.ID, A.Codigo Codigo, A.Nombre, A.Descripcion, A.Precio, C.Descripcion Categoria, C.Id IdCategoria, M.Id IdMarca, M.Descripcion Marca, I.Id IdImagen, I.ImagenUrl ImagenUrl From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id join IMAGENES I on A.Id = I.IdArticulo");
                 //acceso.setearConsulta("Select A.ID, A.Codigo Codigo, A.Nombre, A.Descripcion, A.Precio, C.Descripcion Categoria, C.Id IdCategoria, M.Id IdMarca, M.Descripcion Marca From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id");
                 acceso.setearConsulta("Select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.IdMarca, A.IdCategoria, " +
@@ -31,8 +30,8 @@ namespace Negocio
                     "inner join MARCAS M on A.IdMarca = M.Id " +
                     "left join CATEGORIAS C on A.IdCategoria = C.Id");//puse esta consulta para q muestre TODOS los articulos, probar
                 acceso.ejecutarLectura();
-                List<Articulo> lista = new List<Articulo>();
-=======
+
+
                 acceso.setearConsulta("Select A.ID, A.Codigo Codigo, A.Nombre, A.Descripcion, A.Precio, C.Descripcion Categoria, C.Id IdCategoria, M.Id IdMarca, M.Descripcion Marca, I.Id IdImagen, I.ImagenUrl ImagenUrl From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id join IMAGENES I on A.Id = I.IdArticulo");//esta no muestra el articulo 2
                 //acceso.setearConsulta("Select A.ID, A.Codigo Codigo, A.Nombre, A.Descripcion, A.Precio, C.Descripcion Categoria, C.Id IdCategoria, M.Id IdMarca, M.Descripcion Marca From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id");//esta tira excepcion al mostrar la imagen
                 //acceso.setearConsulta("Select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.IdMarca, A.IdCategoria, " +
@@ -41,10 +40,7 @@ namespace Negocio
                 //    "inner join MARCAS M on A.IdMarca = M.Id " +
                 //    "left join CATEGORIAS C on A.IdCategoria = C.Id");//puse esta consulta para q muestre TODOS los articulos, probar. Con esta hay conflicto, cuando muestro la marca y categoria dicen lo mismo que en descripcion
                 acceso.ejecutarLectura();
-                List<Articulo> lista = new List<Articulo>();
-
-
->>>>>>> 6a26bd3 (Modificando)
+               
                 while (acceso.Lector.Read())
                 {
                     Articulo aux = new Articulo();
@@ -54,7 +50,6 @@ namespace Negocio
                     aux.Nombre = (string)acceso.Lector["Nombre"];
                     aux.Descripcion = (string)acceso.Lector["Descripcion"];
                     aux.Precio = (decimal)acceso.Lector["Precio"];
-<<<<<<< HEAD
                     //aux.Precio = acceso.Lector.GetSqlMoney(5);
 
                     aux.Categoria = new Categoria();
@@ -67,7 +62,6 @@ namespace Negocio
 
                     //aux.ImagenUrl = new Imagen();
                     //aux.ImagenUrl.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
-=======
 
                     aux.Marca = new Marca();
                     aux.Marca.ID = (int)acceso.Lector["IdMarca"];
@@ -79,7 +73,6 @@ namespace Negocio
 
                     //cambié a string en la clase Articulo la parte de la Imagen
                     aux.ImagenUrl = (string)acceso.Lector["ImagenUrl"];
->>>>>>> 6a26bd3 (Modificando)
 
                     lista.Add(aux);
                 }
@@ -244,9 +237,6 @@ namespace Negocio
         }
 
 
-<<<<<<< HEAD
-=======
-
         public List<Articulo> filtrar(string campo, string criterio, string filtro)
         {
             List<Articulo> lista = new List<Articulo>();
@@ -344,8 +334,5 @@ namespace Negocio
             }
         }
 
-
-
->>>>>>> 6a26bd3 (Modificando)
     }
 }

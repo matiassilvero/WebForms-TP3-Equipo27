@@ -22,11 +22,11 @@ namespace Dominio
 
         //public string ImgURL { get; set; }    //esta base no emplea la URL directa, aunque la anterior sí lo tenía directo como atributo.
         //En este caso, habrá que hacer una nueva consulta a la tabla IMAGENES
-<<<<<<< HEAD
-        public Imagen ImagenUrl { get; set; }
-=======
+
+        //public Imagen ImagenUrl { get; set; }
+
         public string ImagenUrl { get; set; }//2junio- lo cambie a string, estaba en tipo Imagen
->>>>>>> 6a26bd3 (Modificando)
+         //6a26bd3 (Modificando)
 
     }
 }

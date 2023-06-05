@@ -23,8 +23,9 @@ namespace Negocio
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server = desktop-nfbo3q3\\sqlexpress; database=CATALOGO_P3_DB; integrated security=true"); //puse para q funcione
-            //conexion = new SqlConnection("data source=localhost; initial catalog= CATALOGO_P3_DB ; integrated security=sspi"); original de naza
+            //conexion = new SqlConnection("data source=.\\sqlexpress; initial catalog=CATALOGO_P3_DB; integrated security=sspi");
+            //conexion = new SqlConnection("server = localhost; database=CATALOGO_P3_DB; integrated security=true"); //puse para q funcione
+            conexion = new SqlConnection("data source=localhost; initial catalog= CATALOGO_P3_DB ; integrated security=sspi"); /*original de naza*/
             //conexion = new SqlConnection("data source= .\\sqlexpress;Initial Catalog=CATALOGO_P3_DB;Persist Security Info=True;User ID=usuario;Password=password\"");
             comando = new SqlCommand();
         }
@@ -40,6 +41,7 @@ namespace Negocio
             comando.Connection = conexion;
             try
             {
+                conexion.Close();
                 conexion.Open();
                 lector = comando.ExecuteReader();
             }
